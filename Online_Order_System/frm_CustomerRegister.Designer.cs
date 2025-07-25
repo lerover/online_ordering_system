@@ -29,16 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtContact = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtCustomerPw = new System.Windows.Forms.TextBox();
             this.txtCustomerNm = new System.Windows.Forms.TextBox();
-            this.lblCustomerID = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -50,16 +48,14 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.groupBox1.Controls.Add(this.txtPassword);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtContact);
             this.groupBox1.Controls.Add(this.txtAddress);
-            this.groupBox1.Controls.Add(this.txtCustomerPw);
             this.groupBox1.Controls.Add(this.txtCustomerNm);
-            this.groupBox1.Controls.Add(this.lblCustomerID);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(91, 72);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
@@ -70,9 +66,27 @@
             this.groupBox1.Text = "Customer Info";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(253, 190);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(276, 26);
+            this.txtPassword.TabIndex = 11;
+            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(40, 193);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 29);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Password";
+            // 
             // txtContact
             // 
-            this.txtContact.Location = new System.Drawing.Point(253, 301);
+            this.txtContact.Location = new System.Drawing.Point(253, 300);
             this.txtContact.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtContact.Multiline = true;
             this.txtContact.Name = "txtContact";
@@ -81,21 +95,12 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(253, 242);
+            this.txtAddress.Location = new System.Drawing.Point(253, 241);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(276, 33);
             this.txtAddress.TabIndex = 8;
-            // 
-            // txtCustomerPw
-            // 
-            this.txtCustomerPw.Location = new System.Drawing.Point(253, 181);
-            this.txtCustomerPw.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtCustomerPw.Multiline = true;
-            this.txtCustomerPw.Name = "txtCustomerPw";
-            this.txtCustomerPw.Size = new System.Drawing.Size(276, 33);
-            this.txtCustomerPw.TabIndex = 7;
             // 
             // txtCustomerNm
             // 
@@ -106,29 +111,21 @@
             this.txtCustomerNm.Size = new System.Drawing.Size(276, 33);
             this.txtCustomerNm.TabIndex = 6;
             // 
-            // lblCustomerID
-            // 
-            this.lblCustomerID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCustomerID.Location = new System.Drawing.Point(253, 69);
-            this.lblCustomerID.Name = "lblCustomerID";
-            this.lblCustomerID.Size = new System.Drawing.Size(276, 38);
-            this.lblCustomerID.TabIndex = 5;
-            // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(40, 306);
+            this.label5.Location = new System.Drawing.Point(40, 305);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 29);
+            this.label5.Size = new System.Drawing.Size(168, 29);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Contact";
+            this.label5.Text = "Contact(optional)";
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(40, 248);
+            this.label4.Location = new System.Drawing.Point(40, 247);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 29);
+            this.label4.Size = new System.Drawing.Size(145, 29);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Address";
+            this.label4.Text = "Address(optional)";
             // 
             // label3
             // 
@@ -137,22 +134,6 @@
             this.label3.Size = new System.Drawing.Size(130, 29);
             this.label3.TabIndex = 2;
             this.label3.Text = "Customer Name";
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(40, 186);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(144, 29);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Customer Password";
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(40, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "CustomerID";
             // 
             // groupBox2
             // 
@@ -170,13 +151,14 @@
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(350, 46);
+            this.btnSave.Location = new System.Drawing.Point(343, 46);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(108, 52);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnClose
             // 
@@ -211,19 +193,22 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.TextBox txtCustomerPw;
         private System.Windows.Forms.TextBox txtCustomerNm;
-        private System.Windows.Forms.Label lblCustomerID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label label1;
+
+        
+
+
+        
     }
 }

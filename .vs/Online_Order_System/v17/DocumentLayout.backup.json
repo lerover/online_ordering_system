@@ -3,32 +3,16 @@
   "WorkspaceRootPath": "D:\\code\\Online_Order_System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\frm_customerregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frm_customerregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\categoryhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\categoryhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|D:\\code\\Online_Order_System\\online_order_system\\frm_customerregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frm_customerregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\categoryhome.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\categoryhome.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|D:\\code\\Online_Order_System\\online_order_system\\frm_customerlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frm_customerlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|D:\\code\\Online_Order_System\\online_order_system\\frm_customerlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frm_customerlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|D:\\code\\Online_Order_System\\online_order_system\\frm_customerlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frm_customerlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|D:\\code\\Online_Order_System\\online_order_system\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|D:\\code\\Online_Order_System\\online_order_system\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\categoryhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\categoryhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,89 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frm_CustomerRegister.cs",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_CustomerRegister.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\frm_CustomerRegister.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_CustomerRegister.cs",
-              "RelativeToolTip": "Online_Order_System\\frm_CustomerRegister.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAuwBsAAAAlAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "CategoryHome.Designer.cs",
+              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\CategoryHome.Designer.cs",
+              "RelativeDocumentMoniker": "Online_Order_System\\CategoryHome.Designer.cs",
+              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\CategoryHome.Designer.cs",
+              "RelativeToolTip": "Online_Order_System\\CategoryHome.Designer.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwD8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T14:07:20.014Z",
+              "WhenOpened": "2025-07-25T19:11:16.986Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frm_CustomerRegister.cs [Design]",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_CustomerRegister.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\frm_CustomerRegister.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_CustomerRegister.cs [Design]",
-              "RelativeToolTip": "Online_Order_System\\frm_CustomerRegister.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "CategoryHome.cs",
+              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\CategoryHome.cs",
+              "RelativeDocumentMoniker": "Online_Order_System\\CategoryHome.cs",
+              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\CategoryHome.cs",
+              "RelativeToolTip": "Online_Order_System\\CategoryHome.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAswCoAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T14:07:18.357Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "frmMain.cs",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frmMain.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\frmMain.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frmMain.cs",
-              "RelativeToolTip": "Online_Order_System\\frmMain.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAuwCsAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T14:06:26.29Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "frmMain.cs [Design]",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frmMain.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\frmMain.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frmMain.cs [Design]",
-              "RelativeToolTip": "Online_Order_System\\frmMain.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T14:06:24.337Z"
+              "WhenOpened": "2025-07-25T19:10:31.497Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "frm_Customerlogin.cs",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_Customerlogin.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\frm_Customerlogin.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_Customerlogin.cs",
-              "RelativeToolTip": "Online_Order_System\\frm_Customerlogin.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAqwBoAAAAMAAAAAAAAAA==",
+              "Title": "CategoryHome.cs [Design]",
+              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\CategoryHome.cs",
+              "RelativeDocumentMoniker": "Online_Order_System\\CategoryHome.cs",
+              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\CategoryHome.cs [Design]",
+              "RelativeToolTip": "Online_Order_System\\CategoryHome.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T14:06:05.688Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frm_Customerlogin.Designer.cs",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_Customerlogin.Designer.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\frm_Customerlogin.Designer.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_Customerlogin.Designer.cs",
-              "RelativeToolTip": "Online_Order_System\\frm_Customerlogin.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T14:05:27.08Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frm_Customerlogin.cs [Design]",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_Customerlogin.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\frm_Customerlogin.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_Customerlogin.cs [Design]",
-              "RelativeToolTip": "Online_Order_System\\frm_Customerlogin.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-25T14:05:58.388Z"
+              "WhenOpened": "2025-07-25T19:10:23.028Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

@@ -51,3 +51,5 @@ D:\code\Online_Order_System\Online_Order_System\bin\Debug\System.Numerics.Vector
 D:\code\Online_Order_System\Online_Order_System\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\code\Online_Order_System\Online_Order_System\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_O.2DA02C3D.Up2Date
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.AdminHome.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.CategoryHome.resources

@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblCategoryID = new System.Windows.Forms.Label();
+            this.txtCategoryName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -43,10 +41,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.lblCategoryID);
+            this.groupBox1.Controls.Add(this.txtCategoryName);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(55, 51);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
@@ -56,23 +52,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Category Info";
             // 
-            // textBox1
+            // txtCategoryName
             // 
-            this.textBox1.Location = new System.Drawing.Point(224, 175);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(322, 44);
-            this.textBox1.TabIndex = 3;
-            // 
-            // lblCategoryID
-            // 
-            this.lblCategoryID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCategoryID.CausesValidation = false;
-            this.lblCategoryID.Location = new System.Drawing.Point(224, 79);
-            this.lblCategoryID.Name = "lblCategoryID";
-            this.lblCategoryID.Size = new System.Drawing.Size(323, 44);
-            this.lblCategoryID.TabIndex = 2;
+            this.txtCategoryName.Location = new System.Drawing.Point(224, 175);
+            this.txtCategoryName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtCategoryName.Multiline = true;
+            this.txtCategoryName.Name = "txtCategoryName";
+            this.txtCategoryName.Size = new System.Drawing.Size(322, 44);
+            this.txtCategoryName.TabIndex = 3;
             // 
             // label2
             // 
@@ -83,16 +70,6 @@
             this.label2.Size = new System.Drawing.Size(119, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Category Name";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.CausesValidation = false;
-            this.label1.Location = new System.Drawing.Point(58, 91);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Category ID";
             // 
             // groupBox2
             // 
@@ -117,6 +94,7 @@
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -128,6 +106,7 @@
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // Frm_Category
             // 
@@ -149,9 +128,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label lblCategoryID;
+        private System.Windows.Forms.TextBox txtCategoryName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnClose;

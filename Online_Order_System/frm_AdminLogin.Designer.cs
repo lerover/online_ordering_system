@@ -36,10 +36,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnRegister = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnRegister = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -59,16 +59,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login Info";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txtAdminPw
             // 
             this.txtAdminPw.Location = new System.Drawing.Point(184, 166);
             this.txtAdminPw.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAdminPw.Multiline = true;
             this.txtAdminPw.Name = "txtAdminPw";
-            this.txtAdminPw.PasswordChar = '*';
-            this.txtAdminPw.Size = new System.Drawing.Size(311, 35);
+            this.txtAdminPw.Size = new System.Drawing.Size(311, 26);
             this.txtAdminPw.TabIndex = 3;
+            this.txtAdminPw.UseSystemPasswordChar = true;
             // 
             // txtAdminName
             // 
@@ -113,6 +113,18 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
+            // btnRegister
+            // 
+            this.btnRegister.BackColor = System.Drawing.Color.White;
+            this.btnRegister.Location = new System.Drawing.Point(249, 49);
+            this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(93, 45);
+            this.btnRegister.TabIndex = 2;
+            this.btnRegister.Text = "&Register";
+            this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.White;
@@ -143,18 +155,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // btnRegister
-            // 
-            this.btnRegister.BackColor = System.Drawing.Color.White;
-            this.btnRegister.Location = new System.Drawing.Point(249, 49);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(93, 45);
-            this.btnRegister.TabIndex = 2;
-            this.btnRegister.Text = "&Register";
-            this.btnRegister.UseVisualStyleBackColor = false;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
             // frm_AdminLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -165,6 +165,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frm_AdminLogin";
             this.Text = "AdminLogin";
+            this.Load += new System.EventHandler(this.frm_AdminLogin_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

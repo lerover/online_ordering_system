@@ -17,6 +17,7 @@ namespace Online_Order_System
         public frm_AdminRegister()
         {
             InitializeComponent();
+            txtPassword.UseSystemPasswordChar = true;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -47,14 +48,14 @@ namespace Online_Order_System
                 if (string.IsNullOrEmpty(password))
                 {
                     MessageBox.Show("Please enter your password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtAdminName.Focus();
+                    txtPassword.Focus();
                     return;
                 }
 
                 if (password.Length <= 5)
                 {
                     MessageBox.Show("Password must be at least 6 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtAdminName.Focus();
+                    txtPassword.Focus();
                     return;
                 }
             }
@@ -111,6 +112,13 @@ namespace Online_Order_System
             {
                 MessageBox.Show("Error:" + ex.Message);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            frmMain frmMain  = new frmMain();
+            frmMain.Show();
+            this.Hide();
         }
     }
 }

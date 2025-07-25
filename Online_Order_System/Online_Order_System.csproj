@@ -98,6 +98,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminHome.Designer.cs">
+      <DependentUpon>AdminHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategoryHome.Designer.cs">
+      <DependentUpon>CategoryHome.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_AdminRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +172,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminHome.resx">
+      <DependentUpon>AdminHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CategoryHome.resx">
+      <DependentUpon>CategoryHome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_AdminRegister.resx">
       <DependentUpon>frm_AdminRegister.cs</DependentUpon>
     </EmbeddedResource>

@@ -62,9 +62,8 @@
             // 
             this.txtPassword.Location = new System.Drawing.Point(171, 145);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(382, 32);
+            this.txtPassword.Size = new System.Drawing.Size(382, 26);
             this.txtPassword.TabIndex = 5;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -76,6 +75,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(382, 35);
             this.txtUserName.TabIndex = 3;
+            this.txtUserName.UseSystemPasswordChar = true;
             // 
             // lblPassword
             // 
