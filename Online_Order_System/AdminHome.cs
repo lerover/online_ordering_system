@@ -30,5 +30,12 @@ namespace Online_Order_System
             frmMain.Show();
             this.Hide();
         }
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+            productHome product = new productHome();
+            product.Show();
+            this.Hide();
+        }
     }
 }

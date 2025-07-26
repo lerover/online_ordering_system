@@ -20,6 +20,7 @@ namespace Online_Order_System
             dataGridViewCategory.Visible = true;
             LoadCategoryData();
             dataGridViewCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void LoadCategoryData()
@@ -47,6 +48,21 @@ namespace Online_Order_System
             {
                 MessageBox.Show("Error :" + ex.Message);
             }
+
+
+            //update
+            DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
+            btnUpdate.HeaderText = "Update";
+            btnUpdate.Text = "Update";
+            btnUpdate.UseColumnTextForButtonValue = true;
+            dataGridViewCategory.Columns.Add(btnUpdate);
+
+            // Add Delete button
+            DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+            btnDelete.HeaderText = "Delete";
+            btnDelete.Text = "Delete";
+            btnDelete.UseColumnTextForButtonValue = true;
+            dataGridViewCategory.Columns.Add(btnDelete);
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -62,5 +78,22 @@ namespace Online_Order_System
             adminHome.Show();
             this.Hide();
         }
+
+        private void dataGridViewCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                if (dataGridViewCategory.Columns[e.ColumnIndex].HeaderText == "Update")
+                {
+                    string id = dataGridViewCategory.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+
+                    DialogResult result = MessageBox.Show("Are you sure to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        MessageBox.Show($"Deleted Name : {id}");
+                    }
+                }
+        }
+
     }
 }

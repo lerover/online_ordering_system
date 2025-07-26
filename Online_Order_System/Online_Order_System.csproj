@@ -170,6 +170,12 @@
     <Compile Include="Frm_ProductUpdateDelete.Designer.cs">
       <DependentUpon>Frm_ProductUpdateDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="productHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="productHome.Designer.cs">
+      <DependentUpon>productHome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdminHome.resx">
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_ProductUpdateDelete.resx">
       <DependentUpon>Frm_ProductUpdateDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="productHome.resx">
+      <DependentUpon>productHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

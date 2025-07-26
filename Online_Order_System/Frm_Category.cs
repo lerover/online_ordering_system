@@ -16,6 +16,8 @@ namespace Online_Order_System
         public Frm_Category()
         {
             InitializeComponent();
+
+          
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -62,6 +64,26 @@ namespace Online_Order_System
         }
 
         private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtCategoryName.Text))
+            {
+                DialogResult warning = MessageBox.Show(
+                   "You have unsaved changes. Are you sure you want to leave without saving?",
+                   "Unsaved Changes",
+                   MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (warning == DialogResult.Yes)
+                {
+                    this.exit();
+                }
+            }
+            else
+            {
+                this.exit();
+            }
+        }
+
+        private void exit()
         {
             CategoryHome categoryHome = new CategoryHome();
             categoryHome.Show();

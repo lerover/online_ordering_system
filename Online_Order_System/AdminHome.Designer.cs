@@ -35,18 +35,21 @@
             // 
             // btnProduct
             // 
-            this.btnProduct.Location = new System.Drawing.Point(237, 168);
+            this.btnProduct.Location = new System.Drawing.Point(211, 134);
+            this.btnProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProduct.Name = "btnProduct";
-            this.btnProduct.Size = new System.Drawing.Size(336, 71);
+            this.btnProduct.Size = new System.Drawing.Size(299, 57);
             this.btnProduct.TabIndex = 1;
             this.btnProduct.Text = "Product";
             this.btnProduct.UseVisualStyleBackColor = true;
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
             // btnCategory
             // 
-            this.btnCategory.Location = new System.Drawing.Point(237, 65);
+            this.btnCategory.Location = new System.Drawing.Point(211, 52);
+            this.btnCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCategory.Name = "btnCategory";
-            this.btnCategory.Size = new System.Drawing.Size(336, 71);
+            this.btnCategory.Size = new System.Drawing.Size(299, 57);
             this.btnCategory.TabIndex = 2;
             this.btnCategory.Text = "Category ";
             this.btnCategory.UseVisualStyleBackColor = true;
@@ -54,9 +57,10 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(237, 278);
+            this.btnLogout.Location = new System.Drawing.Point(211, 222);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(336, 71);
+            this.btnLogout.Size = new System.Drawing.Size(299, 57);
             this.btnLogout.TabIndex = 3;
             this.btnLogout.Text = "Log out";
             this.btnLogout.UseVisualStyleBackColor = true;
@@ -64,12 +68,13 @@
             // 
             // AdminHome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(711, 360);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnCategory);
             this.Controls.Add(this.btnProduct);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "AdminHome";
             this.Text = "AdminHome";
             this.ResumeLayout(false);

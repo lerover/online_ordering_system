@@ -53,3 +53,4 @@ D:\code\Online_Order_System\Online_Order_System\bin\Debug\System.Threading.Tasks
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_O.2DA02C3D.Up2Date
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.AdminHome.resources
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.CategoryHome.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.productHome.resources
