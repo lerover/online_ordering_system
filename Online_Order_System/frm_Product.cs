@@ -139,6 +139,7 @@ namespace Online_Order_System
                                 numericUpDownQty.Value = 0;
                                 txtProductName.Clear();
                                 txtPrice.Clear();
+                                comboBoxCategory.SelectedIndex = -1;
                                 comboBoxCategory.Focus();
                             }
                         }
@@ -158,6 +159,7 @@ namespace Online_Order_System
             numericUpDownQty.Value = 0;
             txtProductName.Clear();
             txtPrice.Clear();
+            comboBoxCategory.SelectedIndex = -1;
             comboBoxCategory.Focus();
         }
 
@@ -165,8 +167,7 @@ namespace Online_Order_System
         {
             if (!string.IsNullOrWhiteSpace(txtProductName.Text) ||
                 !string.IsNullOrWhiteSpace(txtPrice.Text) ||
-                comboBoxCategory.SelectedIndex != 0 ||
-                numericUpDownQty.Value != 0)
+                numericUpDownQty.Value != 0 )
             {
                 DialogResult warning = MessageBox.Show(
                     "You have unsaved changes. Are you sure you want to leave without saving?",

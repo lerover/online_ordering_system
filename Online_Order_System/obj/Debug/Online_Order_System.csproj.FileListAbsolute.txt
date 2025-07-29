@@ -54,3 +54,5 @@ D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_O.2DA02C3D.Up2D
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.AdminHome.resources
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.CategoryHome.resources
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.productHome.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.frm_payment.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.paymentMethod.resources

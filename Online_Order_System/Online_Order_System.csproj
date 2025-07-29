@@ -158,6 +158,12 @@
     <Compile Include="frm_OrderList.Designer.cs">
       <DependentUpon>frm_OrderList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_payment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_payment.Designer.cs">
+      <DependentUpon>frm_payment.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,12 @@
     </Compile>
     <Compile Include="Frm_ProductUpdateDelete.Designer.cs">
       <DependentUpon>Frm_ProductUpdateDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="paymentMethod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="paymentMethod.Designer.cs">
+      <DependentUpon>paymentMethod.cs</DependentUpon>
     </Compile>
     <Compile Include="productHome.cs">
       <SubType>Form</SubType>
@@ -208,11 +220,17 @@
     <EmbeddedResource Include="frm_OrderList.resx">
       <DependentUpon>frm_OrderList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_payment.resx">
+      <DependentUpon>frm_payment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_Product.resx">
       <DependentUpon>frm_Product.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_ProductUpdateDelete.resx">
       <DependentUpon>Frm_ProductUpdateDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="paymentMethod.resx">
+      <DependentUpon>paymentMethod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="productHome.resx">
       <DependentUpon>productHome.cs</DependentUpon>

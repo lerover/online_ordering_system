@@ -37,5 +37,12 @@ namespace Online_Order_System
             product.Show();
             this.Hide();
         }
+
+        private void btnPaymentMethod_Click(object sender, EventArgs e)
+        {
+            paymentMethod paymentMethod = new paymentMethod();
+            paymentMethod.Show();
+            this.Hide();
+        }
     }
 }

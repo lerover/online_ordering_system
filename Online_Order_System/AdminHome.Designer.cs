@@ -31,14 +31,15 @@
             this.btnProduct = new System.Windows.Forms.Button();
             this.btnCategory = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.btnPaymentMethod = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProduct
             // 
-            this.btnProduct.Location = new System.Drawing.Point(211, 134);
+            this.btnProduct.Location = new System.Drawing.Point(237, 168);
             this.btnProduct.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProduct.Name = "btnProduct";
-            this.btnProduct.Size = new System.Drawing.Size(299, 57);
+            this.btnProduct.Size = new System.Drawing.Size(336, 71);
             this.btnProduct.TabIndex = 1;
             this.btnProduct.Text = "Product";
             this.btnProduct.UseVisualStyleBackColor = true;
@@ -46,10 +47,10 @@
             // 
             // btnCategory
             // 
-            this.btnCategory.Location = new System.Drawing.Point(211, 52);
+            this.btnCategory.Location = new System.Drawing.Point(237, 65);
             this.btnCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCategory.Name = "btnCategory";
-            this.btnCategory.Size = new System.Drawing.Size(299, 57);
+            this.btnCategory.Size = new System.Drawing.Size(336, 71);
             this.btnCategory.TabIndex = 2;
             this.btnCategory.Text = "Category ";
             this.btnCategory.UseVisualStyleBackColor = true;
@@ -57,20 +58,32 @@
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(211, 222);
+            this.btnLogout.Location = new System.Drawing.Point(237, 351);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(299, 57);
+            this.btnLogout.Size = new System.Drawing.Size(336, 71);
             this.btnLogout.TabIndex = 3;
             this.btnLogout.Text = "Log out";
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // btnPaymentMethod
+            // 
+            this.btnPaymentMethod.Location = new System.Drawing.Point(237, 256);
+            this.btnPaymentMethod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPaymentMethod.Name = "btnPaymentMethod";
+            this.btnPaymentMethod.Size = new System.Drawing.Size(336, 71);
+            this.btnPaymentMethod.TabIndex = 4;
+            this.btnPaymentMethod.Text = "Payment Method";
+            this.btnPaymentMethod.UseVisualStyleBackColor = true;
+            this.btnPaymentMethod.Click += new System.EventHandler(this.btnPaymentMethod_Click);
+            // 
             // AdminHome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(711, 360);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnPaymentMethod);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnCategory);
             this.Controls.Add(this.btnProduct);
@@ -86,5 +99,6 @@
         private System.Windows.Forms.Button btnProduct;
         private System.Windows.Forms.Button btnCategory;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnPaymentMethod;
     }
 }

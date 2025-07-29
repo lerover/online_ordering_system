@@ -81,7 +81,7 @@ namespace Online_Order_System
 
         private void dataGridViewCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
                 if (dataGridViewCategory.Columns[e.ColumnIndex].HeaderText == "Update")
                 {
@@ -93,6 +93,7 @@ namespace Online_Order_System
                         MessageBox.Show($"Deleted Name : {id}");
                     }
                 }
+            }
         }
 
     }
