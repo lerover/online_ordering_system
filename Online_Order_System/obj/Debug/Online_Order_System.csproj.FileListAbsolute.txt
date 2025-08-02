@@ -56,3 +56,8 @@ D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.Ca
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.productHome.resources
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.frm_payment.resources
 D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.paymentMethod.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.customerHome.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.orderPage.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.orderDetailPage.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.adminOrderPage.resources
+D:\code\Online_Order_System\Online_Order_System\obj\Debug\Online_Order_System.adminOrderDetail.resources

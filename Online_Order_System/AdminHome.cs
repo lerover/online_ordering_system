@@ -44,5 +44,54 @@ namespace Online_Order_System
             paymentMethod.Show();
             this.Hide();
         }
+
+        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void productToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adminRegToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void categoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productEditDeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void orderListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCategory_Click_1(object sender, EventArgs e)
+        {
+            CategoryHome categoryHome = new CategoryHome();
+            categoryHome.Show();
+            this.Hide();
+        }
+
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            adminOrderPage adminOrderPage = new adminOrderPage();
+            adminOrderPage.Show();
+            this.Hide();
+        }
     }
 }

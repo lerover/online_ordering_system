@@ -104,11 +104,29 @@
     <Compile Include="AdminHome.Designer.cs">
       <DependentUpon>AdminHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="adminOrderDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminOrderDetail.Designer.cs">
+      <DependentUpon>adminOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="adminOrderPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adminOrderPage.Designer.cs">
+      <DependentUpon>adminOrderPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="CategoryHome.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CategoryHome.Designer.cs">
       <DependentUpon>CategoryHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="customerHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="customerHome.Designer.cs">
+      <DependentUpon>customerHome.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_AdminRegister.cs">
       <SubType>Form</SubType>
@@ -176,6 +194,18 @@
     <Compile Include="Frm_ProductUpdateDelete.Designer.cs">
       <DependentUpon>Frm_ProductUpdateDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="orderDetailPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="orderDetailPage.Designer.cs">
+      <DependentUpon>orderDetailPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="orderPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="orderPage.Designer.cs">
+      <DependentUpon>orderPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="paymentMethod.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,8 +223,17 @@
     <EmbeddedResource Include="AdminHome.resx">
       <DependentUpon>AdminHome.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="adminOrderDetail.resx">
+      <DependentUpon>adminOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="adminOrderPage.resx">
+      <DependentUpon>adminOrderPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CategoryHome.resx">
       <DependentUpon>CategoryHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="customerHome.resx">
+      <DependentUpon>customerHome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_AdminRegister.resx">
       <DependentUpon>frm_AdminRegister.cs</DependentUpon>
@@ -228,6 +267,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_ProductUpdateDelete.resx">
       <DependentUpon>Frm_ProductUpdateDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="orderDetailPage.resx">
+      <DependentUpon>orderDetailPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="orderPage.resx">
+      <DependentUpon>orderPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="paymentMethod.resx">
       <DependentUpon>paymentMethod.cs</DependentUpon>

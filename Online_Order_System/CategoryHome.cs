@@ -13,6 +13,8 @@ namespace Online_Order_System
 {
     public partial class CategoryHome : Form
     {
+        private string dbstring = "server=localhost; database=online_ordering_system; uid=root; password=";
+
         public CategoryHome()
         {
             InitializeComponent();
@@ -25,7 +27,7 @@ namespace Online_Order_System
 
         private void LoadCategoryData()
         {
-            string db = "server=localhost; database=online_ordering_system; uid=root; password=";
+            string db = this.dbstring;
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(db))
@@ -51,18 +53,27 @@ namespace Online_Order_System
 
 
             //update
-            DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-            btnUpdate.HeaderText = "Update";
-            btnUpdate.Text = "Update";
-            btnUpdate.UseColumnTextForButtonValue = true;
-            dataGridViewCategory.Columns.Add(btnUpdate);
+            if (!dataGridViewCategory.Columns.Contains("btnUpdate"))
+            {
+                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
+                btnUpdate.HeaderText = "Update";
+                btnUpdate.Name = "btnUpdate";
+                btnUpdate.Text = "Update";
+                btnUpdate.UseColumnTextForButtonValue = true;
+                dataGridViewCategory.Columns.Add(btnUpdate);
+            }
+
 
             // Add Delete button
-            DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
-            btnDelete.HeaderText = "Delete";
-            btnDelete.Text = "Delete";
-            btnDelete.UseColumnTextForButtonValue = true;
-            dataGridViewCategory.Columns.Add(btnDelete);
+            if (!dataGridViewCategory.Columns.Contains("btnDelete"))
+            {
+                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
+                btnDelete.HeaderText = "Delete";
+                btnDelete.Name = "btnDelete";
+                btnDelete.Text = "Delete";
+                btnDelete.UseColumnTextForButtonValue = true;
+                dataGridViewCategory.Columns.Add(btnDelete);
+            }
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -81,16 +92,82 @@ namespace Online_Order_System
 
         private void dataGridViewCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0) // fix: include first row (index 0)
             {
-                if (dataGridViewCategory.Columns[e.ColumnIndex].HeaderText == "Update")
+                if (dataGridViewCategory.Columns[e.ColumnIndex].HeaderText == "Delete")
                 {
-                    string id = dataGridViewCategory.Rows[e.RowIndex].Cells["ID"].Value.ToString();
+                    string id = dataGridViewCategory.Rows[e.RowIndex].Cells["categoryID"].Value.ToString();
 
                     DialogResult result = MessageBox.Show("Are you sure to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        MessageBox.Show($"Deleted Name : {id}");
+                        string db = this.dbstring;
+                        try
+                        {
+                            using (MySqlConnection conn = new MySqlConnection(db))
+                            {
+                                conn.Open();
+                                string query = "DELETE FROM category WHERE categoryID = @id";
+
+                                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@id", id);
+                                    int rows = cmd.ExecuteNonQuery();
+
+                                    if (rows > 0)
+                                    {
+                                        MessageBox.Show("Deleted successfully!");
+                                        // Optionally, refresh your DataGridView here
+                                        LoadCategoryData();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Delete failed or record not found.");
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error : " + ex.Message);
+                        }
+                    }
+                }
+                else // Assume this is Edit or other column click
+                {
+                    string id = dataGridViewCategory.Rows[e.RowIndex].Cells["categoryID"].Value.ToString();
+
+                    string db = this.dbstring;
+                    try
+                    {
+                        using (MySqlConnection conn = new MySqlConnection(db))
+                        {
+                            conn.Open();
+                            string query = "SELECT * FROM category WHERE categoryID = @id";
+
+                            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@id", id);
+
+                                using (MySqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        int categoryID = reader.GetInt32("categoryID");
+                                        string name = reader.GetString("name");
+                                        DateTime updated_at = reader.GetDateTime("updated_at");
+
+                                        Frm_Category frm_category = new Frm_Category(categoryID, name, updated_at);
+                                        frm_category.Show();
+                                        this.Hide();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error : " + ex.Message);
                     }
                 }
             }

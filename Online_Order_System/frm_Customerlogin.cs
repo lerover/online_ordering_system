@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 
 namespace Online_Order_System
 {
@@ -64,13 +65,19 @@ namespace Online_Order_System
 
                         MySqlDataReader reader = cmd.ExecuteReader();
 
+              
                         if (reader.HasRows)
                         {
+                            if (reader.Read())
+                            {
+                                int customerID = reader.GetInt32("customerID");
+                                Session.CustomerID = customerID;
+                            }
                             DialogResult result = MessageBox.Show("Successfully Login", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             if (result == DialogResult.OK)
                             {
-                                frm_CustomerHome frm_CustomerHome = new frm_CustomerHome();
-                                frm_CustomerHome.Show();
+                                customerHome customerHome = new customerHome();
+                                customerHome.Show();
                                 this.Hide();
                             }
 
@@ -116,5 +123,10 @@ namespace Online_Order_System
         {
 
         }
+    }
+
+    public static class Session
+    {
+        public static int CustomerID {  get; set; }
     }
 }

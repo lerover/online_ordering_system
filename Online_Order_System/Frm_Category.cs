@@ -13,15 +13,56 @@ namespace Online_Order_System
 {
     public partial class Frm_Category : Form
     {
-        public Frm_Category()
+        private int? categoryID;
+        private string name;
+        private DateTime? updated_at;
+
+        private string dbstring = "server=localhost; database=online_ordering_system; uid=root;password=";
+        public Frm_Category(int? categoryID = null, string name = null, DateTime? updated_at = null)
         {
             InitializeComponent();
+            this.categoryID = categoryID;
+            this.name = name;
+            this.updated_at = updated_at;
+            txtCategoryName.Text = this.name;
 
-          
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            string db = this.dbstring;
+            if(this.categoryID != null && this.name != null && this.updated_at != null)
+            {
+                try
+                {
+                    using(MySqlConnection conn = new MySqlConnection(db))
+                    {
+                        conn.Open();
+                        string query = $"UPDATE category SET name=@name, updated_at = @update_at WHERE categoryID = {this.categoryID}";
+                        using(MySqlCommand cmd = new MySqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@name", txtCategoryName.Text);
+                            cmd.Parameters.AddWithValue("@update_at", DateTime.Now);
+
+                            int result = cmd.ExecuteNonQuery();
+
+                            if(result > 0)
+                            {
+                                MessageBox.Show("Category updated successfully!");
+                                CategoryHome home = new CategoryHome();
+                                home.Show();
+                                this.Hide();
+                            }
+                        }
+                    }
+                }catch(Exception ex)
+                {
+                    MessageBox.Show("Error :" + ex.Message);
+                }
+
+                return;
+            }
             string name = txtCategoryName.Text;
 
             if (string.IsNullOrEmpty(name))
@@ -30,7 +71,6 @@ namespace Online_Order_System
                 return;
             }
 
-            string db = "server=localhost; database=online_ordering_system; uid=root;password=";
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(db))
