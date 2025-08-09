@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.SqlClient;  // Changed to SQL Server
 
 namespace Online_Order_System
 {
     public partial class frm_Product : Form
     {
-        private string dbString = "server=localhost; database=online_ordering_system; uid=root; password=";
+        private string dbString = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
         public frm_Product()
         {
             InitializeComponent();
@@ -30,15 +30,14 @@ namespace Online_Order_System
         {
             comboBoxCategory.Items.Insert(0, "Select Category");
 
-
             string db = this.dbString;
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
-                    string query = "Select categoryID,name from category";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    string query = "SELECT categoryID, name FROM category";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
 
                     adapter.Fill(dt);
@@ -75,13 +74,10 @@ namespace Online_Order_System
             int categoryID;
             int quantity;
             decimal price;
-            //string category = comboBoxCategory.SelectedItem.ToString();
-            //int categoryID = Convert.ToInt32(comboBoxCategory.SelectedValue);
-
 
             if (comboBoxCategory.SelectedValue == null ||
                 !int.TryParse(comboBoxCategory.SelectedValue.ToString(), out categoryID)
-                || Convert.ToInt32(comboBoxCategory.SelectedValue) == 0)
+                || categoryID == 0)
             {
                 MessageBox.Show("Please select a valid category.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 comboBoxCategory.Focus();
@@ -104,7 +100,6 @@ namespace Online_Order_System
                 return;
             }
 
-            //price = Convert.ToDecimal(txtPrice.Text);
             if (!decimal.TryParse(txtPrice.Text, out price) || price < 0)
             {
                 MessageBox.Show("Please enter a valid, non-negative price.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -112,21 +107,18 @@ namespace Online_Order_System
                 return;
             }
 
-
-
-
             string db = this.dbString;
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
-                    string query = "INSERT INTO product(NAME,categoryID,quantity,price) VALUES(@name,@categoryID,@quantity,@price)";
+                    string query = "INSERT INTO product(NAME, categoryID, quantity, price) VALUES(@name, @categoryID, @quantity, @price)";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@categoryID", categoryID);
-                        cmd.Parameters.AddWithValue("@NAME", name);
+                        cmd.Parameters.AddWithValue("@name", name);
                         cmd.Parameters.AddWithValue("@quantity", quantity);
                         cmd.Parameters.AddWithValue("@price", price);
 
@@ -149,7 +141,9 @@ namespace Online_Order_System
                         }
                     }
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("Error :" + ex.Message);
             }
         }
@@ -167,7 +161,7 @@ namespace Online_Order_System
         {
             if (!string.IsNullOrWhiteSpace(txtProductName.Text) ||
                 !string.IsNullOrWhiteSpace(txtPrice.Text) ||
-                numericUpDownQty.Value != 0 )
+                numericUpDownQty.Value != 0)
             {
                 DialogResult warning = MessageBox.Show(
                     "You have unsaved changes. Are you sure you want to leave without saving?",
@@ -183,7 +177,6 @@ namespace Online_Order_System
             {
                 this.exit();
             }
-
         }
 
         private void exit()

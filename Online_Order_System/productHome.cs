@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.SqlClient;  // changed to SQL Server namespace
 
 namespace Online_Order_System
 {
@@ -19,8 +19,6 @@ namespace Online_Order_System
             dataGridViewProduct.ColumnHeadersVisible = true;
             dataGridViewProduct.AutoSize = true;
             dataGridViewProduct.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -32,15 +30,18 @@ namespace Online_Order_System
 
         private void productHome_Load(object sender, EventArgs e)
         {
-            string db = "server=localhost; database=online_ordering_system; uid=root; password=";
+            string db = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
                     string query =
-                        "Select p.NAME AS product_name,c.name AS category_name, p.quantity, p.price, p.created_at, p.updated_at From product p JOIN category c ON p.categoryID = c.categoryID";
-                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn))
+                        @"SELECT p.NAME AS product_name, c.name AS category_name, p.quantity, p.price, p.created_at, p.updated_at 
+                          FROM product p 
+                          JOIN category c ON p.categoryID = c.categoryID";
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
                     {
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
@@ -53,24 +54,13 @@ namespace Online_Order_System
                         dataGridViewProduct.Columns["price"].HeaderText = "Price";
                         dataGridViewProduct.Columns["created_at"].HeaderText = "Created At";
                         dataGridViewProduct.Columns["updated_at"].HeaderText = "Updated At";
-
                     }
-
-
-                    //string query = "SELECT categoryID,name,created_at AS created_at FROM category";
-                    //MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
-                    //DataTable dt = new DataTable();
-                    //adapter.Fill(dt);
-
-                    //dataGridViewCategory.DataSource = dt;
-
-                    //dataGridViewCategory.Columns["CategoryID"].HeaderText = "ID";
-                    //dataGridViewCategory.Columns["name"].HeaderText = "Category Name";
-                    //dataGridViewCategory.Columns["created_at"].HeaderText = "Create Date";
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("Error :" + ex.Message);
-               }
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -82,12 +72,12 @@ namespace Online_Order_System
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
+            // Optional paint event handler
         }
 
         private void dataGridViewProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Optional cell click handler
         }
     }
 }

@@ -7,8 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
+using Microsoft.Data.SqlClient;  // Changed to SQL Server provider
 
 namespace Online_Order_System
 {
@@ -46,7 +45,7 @@ namespace Online_Order_System
 
             if (string.IsNullOrEmpty(username))
             {
-                MessageBox.Show("Customer Name is required!","Validation Error",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Customer Name is required!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -67,16 +66,16 @@ namespace Online_Order_System
                 }
             }
 
-            string dbConnection = "server=localhost; database=online_ordering_system; uid=root;password=";
+            string dbConnection = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(dbConnection))
+                using (SqlConnection conn = new SqlConnection(dbConnection))
                 {
                     conn.Open();
 
-                    string checkQuery = "Select COUNT(*) FROM customer WHERE customerName Like @username";
-                    using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
+                    string checkQuery = "SELECT COUNT(*) FROM customer WHERE customerName LIKE @username";
+                    using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                     {
                         checkCmd.Parameters.AddWithValue("@username", username);
                         int count = Convert.ToInt32(checkCmd.ExecuteScalar());
@@ -87,21 +86,19 @@ namespace Online_Order_System
                         }
                     }
 
-                    //string query = $"INSERT INTO admin (adminName,password) VALUES (@username,@password) ";
+                    string query = "INSERT INTO customer (customerName, address, contact, password) VALUES (@username, @address, @contact, @password)";
 
-                    string query = "INSERT INTO customer (customerName,address,contact,password) VALUES (@username,@address,@contact,@password)";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@address",address);
+                        cmd.Parameters.AddWithValue("@address", address);
                         cmd.Parameters.AddWithValue("@contact", contact);
                         cmd.Parameters.AddWithValue("@password", password);
 
                         int result = cmd.ExecuteNonQuery();
-                        if(result > 0)
+                        if (result > 0)
                         {
-                           DialogResult success = MessageBox.Show("Account created Successfully!","Success",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                            DialogResult success = MessageBox.Show("Account created Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             if (success == DialogResult.OK)
                             {
                                 frm_Customerlogin frm_Customerlogin = new frm_Customerlogin();

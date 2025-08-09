@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI;
+using Microsoft.Data.SqlClient;  // Changed from MySql.Data.MySqlClient
+// Removed MySqlX.XDevAPI as it's MySQL-specific
 
 namespace Online_Order_System
 {
@@ -49,43 +49,39 @@ namespace Online_Order_System
                 }
             }
 
-
-
-            string dbConnection = "server=localhost; database=online_ordering_system; uid=root; password=";
+            string dbConnection = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(dbConnection))
+                using (SqlConnection conn = new SqlConnection(dbConnection))
                 {
                     conn.Open();
                     string query = "SELECT * FROM customer WHERE customerName = @username AND password = @password";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue ("@password", password);
+                        cmd.Parameters.AddWithValue("@password", password);
 
-                        MySqlDataReader reader = cmd.ExecuteReader();
-
-              
-                        if (reader.HasRows)
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
+                            if (reader.HasRows)
                             {
-                                int customerID = reader.GetInt32("customerID");
-                                Session.CustomerID = customerID;
+                                if (reader.Read())
+                                {
+                                    int customerID = reader.GetInt32(reader.GetOrdinal("customerID"));
+                                    Session.CustomerID = customerID;
+                                }
+                                DialogResult result = MessageBox.Show("Successfully Login", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                if (result == DialogResult.OK)
+                                {
+                                    customerHome customerHome = new customerHome();
+                                    customerHome.Show();
+                                    this.Hide();
+                                }
                             }
-                            DialogResult result = MessageBox.Show("Successfully Login", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if (result == DialogResult.OK)
+                            else
                             {
-                                customerHome customerHome = new customerHome();
-                                customerHome.Show();
-                                this.Hide();
+                                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-
-                            reader.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -94,15 +90,12 @@ namespace Online_Order_System
             {
                 MessageBox.Show("Error :" + ex.Message);
             }
-
-
         }
 
         private void btn_register_Click(object sender, EventArgs e)
         {
             frm_CustomerRegister frm_CustomerRegister = new frm_CustomerRegister();
             frm_CustomerRegister.Show();
-
             this.Hide();
         }
 
@@ -115,7 +108,6 @@ namespace Online_Order_System
         {
             frmMain frmMain = new frmMain();
             frmMain.Show();
-
             this.Hide();
         }
 
@@ -127,6 +119,6 @@ namespace Online_Order_System
 
     public static class Session
     {
-        public static int CustomerID {  get; set; }
+        public static int CustomerID { get; set; }
     }
 }

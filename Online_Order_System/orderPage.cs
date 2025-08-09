@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.SqlClient;  // Changed to SQL Server namespace
 
 namespace Online_Order_System
 {
@@ -15,7 +15,6 @@ namespace Online_Order_System
     {
         public orderPage()
         {
-
             InitializeComponent();
             dataLoad();
         }
@@ -29,11 +28,10 @@ namespace Online_Order_System
 
         private void dataLoad()
         {
-            
-            string db = "server=localhost; database=online_ordering_system; uid=root;password=";
+            string db = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
                     int customerID = Session.CustomerID;
@@ -48,19 +46,19 @@ namespace Online_Order_System
                                         p.NAME AS paymentName,
                                         o.orderDate
                                     FROM 
-                                        `order` o
+                                        [order] o
                                     JOIN 
                                         customer c ON o.customerID = c.customerID
                                     JOIN 
-                                        `payment-methods` p ON o.paymentID = p.paymentID
+                                        [payment-methods] p ON o.paymentID = p.paymentID
                                     WHERE 
                                         o.customerID = @authID";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@authID", customerID);
 
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             DataTable dt = new DataTable();
                             adapter.Fill(dt);
@@ -83,12 +81,11 @@ namespace Online_Order_System
 
                 dgvOrder.Columns.Add(btnview);
             }
-
         }
 
         private void dgvOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0 && dgvOrder.Columns[e.ColumnIndex].Name == "btnview")
+            if (e.RowIndex >= 0 && dgvOrder.Columns[e.ColumnIndex].Name == "btnview")
             {
                 var orderID = dgvOrder.Rows[e.RowIndex].Cells["orderID"].Value.ToString();
 

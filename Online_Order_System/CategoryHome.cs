@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Online_Order_System
 {
     public partial class CategoryHome : Form
     {
-        private string dbstring = "server=localhost; database=online_ordering_system; uid=root; password=";
+        // SQL Server connection string
+        private string dbstring = "Data Source=localhost;Initial Catalog=online_ordering_system;Integrated Security=True";
 
         public CategoryHome()
         {
@@ -22,26 +17,24 @@ namespace Online_Order_System
             dataGridViewCategory.Visible = true;
             LoadCategoryData();
             dataGridViewCategory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
         }
 
         private void LoadCategoryData()
         {
-            string db = this.dbstring;
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(dbstring))
                 {
                     conn.Open();
 
-                    string query = "SELECT categoryID,name,created_at AS created_at FROM category";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    string query = "SELECT categoryID, name, created_at FROM category";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
-                
+
                     dataGridViewCategory.DataSource = dt;
 
-                    dataGridViewCategory.Columns["CategoryID"].HeaderText = "ID";
+                    dataGridViewCategory.Columns["categoryID"].HeaderText = "ID";
                     dataGridViewCategory.Columns["name"].HeaderText = "Category Name";
                     dataGridViewCategory.Columns["created_at"].HeaderText = "Create Date";
                 }
@@ -51,27 +44,29 @@ namespace Online_Order_System
                 MessageBox.Show("Error :" + ex.Message);
             }
 
-
-            //update
+            // Update button
             if (!dataGridViewCategory.Columns.Contains("btnUpdate"))
             {
-                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn();
-                btnUpdate.HeaderText = "Update";
-                btnUpdate.Name = "btnUpdate";
-                btnUpdate.Text = "Update";
-                btnUpdate.UseColumnTextForButtonValue = true;
+                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Update",
+                    Name = "btnUpdate",
+                    Text = "Update",
+                    UseColumnTextForButtonValue = true
+                };
                 dataGridViewCategory.Columns.Add(btnUpdate);
             }
 
-
-            // Add Delete button
+            // Delete button
             if (!dataGridViewCategory.Columns.Contains("btnDelete"))
             {
-                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn();
-                btnDelete.HeaderText = "Delete";
-                btnDelete.Name = "btnDelete";
-                btnDelete.Text = "Delete";
-                btnDelete.UseColumnTextForButtonValue = true;
+                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Delete",
+                    Name = "btnDelete",
+                    Text = "Delete",
+                    UseColumnTextForButtonValue = true
+                };
                 dataGridViewCategory.Columns.Add(btnDelete);
             }
         }
@@ -80,7 +75,7 @@ namespace Online_Order_System
         {
             Frm_Category frm_category = new Frm_Category();
             frm_category.Show();
-            this.Hide();    
+            this.Hide();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -92,24 +87,23 @@ namespace Online_Order_System
 
         private void dataGridViewCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // fix: include first row (index 0)
+            if (e.RowIndex >= 0)
             {
-                if (dataGridViewCategory.Columns[e.ColumnIndex].HeaderText == "Delete")
-                {
-                    string id = dataGridViewCategory.Rows[e.RowIndex].Cells["categoryID"].Value.ToString();
+                string id = dataGridViewCategory.Rows[e.RowIndex].Cells["categoryID"].Value.ToString();
 
+                if (dataGridViewCategory.Columns[e.ColumnIndex].Name == "btnDelete")
+                {
                     DialogResult result = MessageBox.Show("Are you sure to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
                     {
-                        string db = this.dbstring;
                         try
                         {
-                            using (MySqlConnection conn = new MySqlConnection(db))
+                            using (SqlConnection conn = new SqlConnection(dbstring))
                             {
                                 conn.Open();
                                 string query = "DELETE FROM category WHERE categoryID = @id";
 
-                                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                                using (SqlCommand cmd = new SqlCommand(query, conn))
                                 {
                                     cmd.Parameters.AddWithValue("@id", id);
                                     int rows = cmd.ExecuteNonQuery();
@@ -117,7 +111,6 @@ namespace Online_Order_System
                                     if (rows > 0)
                                     {
                                         MessageBox.Show("Deleted successfully!");
-                                        // Optionally, refresh your DataGridView here
                                         LoadCategoryData();
                                     }
                                     else
@@ -129,33 +122,30 @@ namespace Online_Order_System
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Error : " + ex.Message);
+                            MessageBox.Show("Error: " + ex.Message);
                         }
                     }
                 }
-                else // Assume this is Edit or other column click
+                else if (dataGridViewCategory.Columns[e.ColumnIndex].Name == "btnUpdate")
                 {
-                    string id = dataGridViewCategory.Rows[e.RowIndex].Cells["categoryID"].Value.ToString();
-
-                    string db = this.dbstring;
                     try
                     {
-                        using (MySqlConnection conn = new MySqlConnection(db))
+                        using (SqlConnection conn = new SqlConnection(dbstring))
                         {
                             conn.Open();
                             string query = "SELECT * FROM category WHERE categoryID = @id";
 
-                            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
                             {
                                 cmd.Parameters.AddWithValue("@id", id);
 
-                                using (MySqlDataReader reader = cmd.ExecuteReader())
+                                using (SqlDataReader reader = cmd.ExecuteReader())
                                 {
                                     if (reader.Read())
                                     {
-                                        int categoryID = reader.GetInt32("categoryID");
-                                        string name = reader.GetString("name");
-                                        DateTime updated_at = reader.GetDateTime("updated_at");
+                                        int categoryID = reader.GetInt32(reader.GetOrdinal("categoryID"));
+                                        string name = reader.GetString(reader.GetOrdinal("name"));
+                                        DateTime updated_at = reader.GetDateTime(reader.GetOrdinal("updated_at"));
 
                                         Frm_Category frm_category = new Frm_Category(categoryID, name, updated_at);
                                         frm_category.Show();
@@ -167,11 +157,10 @@ namespace Online_Order_System
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error : " + ex.Message);
+                        MessageBox.Show("Error: " + ex.Message);
                     }
                 }
             }
         }
-
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.SqlClient; // Changed to SqlClient for SQL Server
 
 namespace Online_Order_System
 {
@@ -17,7 +17,9 @@ namespace Online_Order_System
         private string name;
         private DateTime? updated_at;
 
-        private string dbstring = "server=localhost; database=online_ordering_system; uid=root;password=";
+        // SQL Server connection string (Trusted Connection)
+        private string dbstring = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
+
         public Frm_Category(int? categoryID = null, string name = null, DateTime? updated_at = null)
         {
             InitializeComponent();
@@ -25,29 +27,27 @@ namespace Online_Order_System
             this.name = name;
             this.updated_at = updated_at;
             txtCategoryName.Text = this.name;
-
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             string db = this.dbstring;
-            if(this.categoryID != null && this.name != null && this.updated_at != null)
+            if (this.categoryID != null && this.name != null && this.updated_at != null)
             {
                 try
                 {
-                    using(MySqlConnection conn = new MySqlConnection(db))
+                    using (SqlConnection conn = new SqlConnection(db))
                     {
                         conn.Open();
                         string query = $"UPDATE category SET name=@name, updated_at = @update_at WHERE categoryID = {this.categoryID}";
-                        using(MySqlCommand cmd = new MySqlCommand(query, conn))
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@name", txtCategoryName.Text);
                             cmd.Parameters.AddWithValue("@update_at", DateTime.Now);
 
                             int result = cmd.ExecuteNonQuery();
 
-                            if(result > 0)
+                            if (result > 0)
                             {
                                 MessageBox.Show("Category updated successfully!");
                                 CategoryHome home = new CategoryHome();
@@ -56,13 +56,15 @@ namespace Online_Order_System
                             }
                         }
                     }
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error :" + ex.Message);
                 }
 
                 return;
             }
+
             string name = txtCategoryName.Text;
 
             if (string.IsNullOrEmpty(name))
@@ -73,19 +75,19 @@ namespace Online_Order_System
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
 
                     string query = "INSERT INTO category (name) VALUES (@name)";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@name", name);
                         int result = cmd.ExecuteNonQuery();
                         if (result > 0)
                         {
-                           DialogResult success =  MessageBox.Show("Category successfully created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if(success == DialogResult.OK)
+                            DialogResult success = MessageBox.Show("Category successfully created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (success == DialogResult.OK)
                             {
                                 txtCategoryName.Clear();
                                 txtCategoryName.Focus();
@@ -96,9 +98,10 @@ namespace Online_Order_System
                             MessageBox.Show("Category create Failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    ;
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("Error :" + ex.Message);
             }
         }

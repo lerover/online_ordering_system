@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Mysqlx.Expect.Open.Types;
+using Microsoft.Data.SqlClient;  // Changed to SqlClient for SQL Server
 
 namespace Online_Order_System
 {
@@ -16,7 +15,7 @@ namespace Online_Order_System
     {
         private int orderTotal = 0;
         private decimal grandPrice = 0;
-        private string dbstring = "server=localhost;database=online_ordering_system;uid=root;password=";
+        private string dbstring = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
         private decimal selectedProductPrice;
         private List<shoppingItem> shoppingItems = new List<shoppingItem>();
         private List<orderDetail> orderDetail = new List<orderDetail>();
@@ -53,19 +52,18 @@ namespace Online_Order_System
 
         }
 
-
         private void data_reload()
         {
             string db = this.dbstring;
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
 
-                    string query = "SELECT categoryID,name FROM category";
+                    string query = "SELECT categoryID, name FROM category";
 
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
 
                     DataTable dt = new DataTable();
 
@@ -87,22 +85,21 @@ namespace Online_Order_System
             {
                 MessageBox.Show("Error :" + ex.Message);
             }
-
         }
         private void btnNowOrder_Click(object sender, EventArgs e)
         {
-            if(orderDetail.Count == 0)
+            if (orderDetail.Count == 0)
             {
                 MessageBox.Show("No product is selected", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(txtName.Text == null)
+            if (string.IsNullOrWhiteSpace(txtName.Text))
             {
                 MessageBox.Show("Name is required", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if(comboPaymentType.SelectedIndex == 0)
+            if (comboPaymentType.SelectedIndex == 0)
             {
                 MessageBox.Show("Payment Type is required", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -117,13 +114,19 @@ namespace Online_Order_System
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
-                    string query = "INSERT INTO `order`(customerID,orderTotal,grandtotal,STATUS,paymentID,orderDate,customerName) VALUES(@customerID,@orderTotal,@grandtotal,@status,@paymentID,@orderDate,@customerName)";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+
+                    // Insert order and get inserted ID using OUTPUT INSERTED.orderID
+                    string query = @"
+                        INSERT INTO [order] (customerID, orderTotal, grandtotal, STATUS, paymentID, orderDate, customerName) 
+                        OUTPUT INSERTED.orderID
+                        VALUES (@customerID, @orderTotal, @grandtotal, @status, @paymentID, @orderDate, @customerName)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@customerID",customerID);
+                        cmd.Parameters.AddWithValue("@customerID", customerID);
                         cmd.Parameters.AddWithValue("@orderTotal", orderTotal);
                         cmd.Parameters.AddWithValue("@grandtotal", grandTotal);
                         cmd.Parameters.AddWithValue("@status", "pending");
@@ -131,36 +134,31 @@ namespace Online_Order_System
                         cmd.Parameters.AddWithValue("@orderDate", selectedDate);
                         cmd.Parameters.AddWithValue("@customerName", txtName.Text);
 
-                        int result = cmd.ExecuteNonQuery();
-                        if (result > 0)
+                        long orderID = Convert.ToInt64(cmd.ExecuteScalar());
+
+                        string detailQuery = "INSERT INTO order_details (productID, orderID, totalQty, totalPrice) VALUES (@productID, @orderID, @totalQty, @totalPrice)";
+
+                        foreach (var detail in orderDetail)
                         {
-                            long orderID = cmd.LastInsertedId;
-                            string detailQuery = "INSERT INTO `order_details`(productID,orderID,totalQty,totalPrice) VALUES(@productID,@orderID,@totalQty,@totalPrice)";
-
-                            foreach (var detail in orderDetail)
+                            using (SqlCommand detailcmd = new SqlCommand(detailQuery, conn))
                             {
-                                using (MySqlCommand detailcmd = new MySqlCommand(detailQuery, conn))
-                                {
-                                    detailcmd.Parameters.AddWithValue("@productID", detail.productID);
-                                    detailcmd.Parameters.AddWithValue("@orderID", orderID); // ✅ use the ID you just got
-                                    detailcmd.Parameters.AddWithValue("@totalQty", detail.totalQty);
-                                    detailcmd.Parameters.AddWithValue("@totalPrice", detail.TotalPrice);
+                                detailcmd.Parameters.AddWithValue("@productID", detail.productID);
+                                detailcmd.Parameters.AddWithValue("@orderID", orderID); // use the ID you just got
+                                detailcmd.Parameters.AddWithValue("@totalQty", detail.totalQty);
+                                detailcmd.Parameters.AddWithValue("@totalPrice", detail.TotalPrice);
 
-                                    detailcmd.ExecuteNonQuery();
-                                }
+                                detailcmd.ExecuteNonQuery();
                             }
-                            DialogResult finalResult = MessageBox.Show("Your order has been placed successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if(finalResult == DialogResult.OK)
-                            {
+                        }
+                        DialogResult finalResult = MessageBox.Show("Your order has been placed successfully.", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (finalResult == DialogResult.OK)
+                        {
+                            // Clear both lists
+                            orderDetail.Clear();
+                            shoppingItems.Clear();
 
-                                // Clear both lists
-                                orderDetail.Clear();
-                                shoppingItems.Clear();
-
-                                dgvShoppingList.DataSource = null;
-                                dgvShoppingList.DataSource = shoppingItems;
-                            }
-
+                            dgvShoppingList.DataSource = null;
+                            dgvShoppingList.DataSource = shoppingItems;
                         }
                     }
                 }
@@ -188,21 +186,21 @@ namespace Online_Order_System
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
                     string query;
 
                     if (condition != null)
                     {
-                        query = $"SELECT productID,NAME,price FROM product WHERE categoryID = {condition}";
+                        query = $"SELECT productID, NAME, price FROM product WHERE categoryID = {condition}";
                     }
                     else
                     {
-                        query = "SELECT productID,NAME,price FROM product";
+                        query = "SELECT productID, NAME, price FROM product";
                     }
 
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
 
                     DataTable dt = new DataTable();
 
@@ -231,12 +229,12 @@ namespace Online_Order_System
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
-                    string query = "SELECT paymentID,NAME FROM `payment-methods`";
+                    string query = "SELECT paymentID, NAME FROM [payment-methods]";
 
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
 
                     DataTable dt = new DataTable();
 
@@ -273,13 +271,11 @@ namespace Online_Order_System
 
         }
 
-
-
         private void cboProduct_selectedIndexChange(object sender, EventArgs e)
         {
             if (cboProduct.SelectedIndex > 0)
             {
-               if(cboProduct.SelectedItem is DataRowView row)
+                if (cboProduct.SelectedItem is DataRowView row)
                 {
                     try
                     {
@@ -302,7 +298,7 @@ namespace Online_Order_System
         {
             int quantity = (int)nudtotalQty.Value;
 
-            if(quantity > 0)
+            if (quantity > 0)
             {
                 decimal finalPrice = this.selectedProductPrice * quantity;
 
@@ -316,7 +312,7 @@ namespace Online_Order_System
 
         private void btnShoppingList_Click(object sender, EventArgs e)
         {
-            if(cboProduct.SelectedIndex <= 0)
+            if (cboProduct.SelectedIndex <= 0)
             {
                 MessageBox.Show("Please select a product.");
                 return;
@@ -329,7 +325,7 @@ namespace Online_Order_System
             }
 
             int qty = (int)nudtotalQty.Value;
-            if(qty <= 0)
+            if (qty <= 0)
             {
                 MessageBox.Show("Quantity must be greater than zero.");
                 return;
@@ -353,7 +349,7 @@ namespace Online_Order_System
             };
 
             this.grandPrice += Convert.ToDecimal(txtTotalPrice.Text);
-            this.orderTotal += qty; 
+            this.orderTotal += qty;
             txtGrandTotal.Text = Convert.ToString(this.grandPrice);
 
             shoppingItems.Add(item);
@@ -412,14 +408,14 @@ namespace Online_Order_System
 
     public class shoppingItem
     {
-        public string productName {  get; set; }
+        public string productName { get; set; }
         public int TotalQty { get; set; }
         public decimal TotalPrice { get; set; }
     }
 
     public class orderDetail
     {
-        public int productID {  get; set; }
+        public int productID { get; set; }
         public int totalQty { get; set; }
         public decimal TotalPrice { get; set; }
     }

@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "D:\\code\\Online_Order_System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\adminorderpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\adminorderpage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\frm_adminregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frm_adminregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\adminorderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\adminorderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\adminorderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\adminorderdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|d:\\code\\online_order_system\\online_order_system\\frm_adminregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{00FE6A5A-6F35-48DC-9D43-7EB9208238C4}|Online_Order_System\\Online_Order_System.csproj|solutionrelative:online_order_system\\frm_adminregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,44 +18,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "adminOrderPage.cs",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\adminOrderPage.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\adminOrderPage.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\adminOrderPage.cs",
-              "RelativeToolTip": "Online_Order_System\\adminOrderPage.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAIwFIAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "frm_AdminRegister.cs [Design]",
+              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_AdminRegister.cs",
+              "RelativeDocumentMoniker": "Online_Order_System\\frm_AdminRegister.cs",
+              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_AdminRegister.cs [Design]",
+              "RelativeToolTip": "Online_Order_System\\frm_AdminRegister.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T00:19:44.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "adminOrderDetail.cs [Design]",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\adminOrderDetail.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\adminOrderDetail.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\adminOrderDetail.cs [Design]",
-              "RelativeToolTip": "Online_Order_System\\adminOrderDetail.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T00:19:31.449Z",
+              "WhenOpened": "2025-08-02T11:14:59.634Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "adminOrderDetail.cs",
-              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\adminOrderDetail.cs",
-              "RelativeDocumentMoniker": "Online_Order_System\\adminOrderDetail.cs",
-              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\adminOrderDetail.cs",
-              "RelativeToolTip": "Online_Order_System\\adminOrderDetail.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAEwBsAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "frm_AdminRegister.cs",
+              "DocumentMoniker": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_AdminRegister.cs",
+              "RelativeDocumentMoniker": "Online_Order_System\\frm_AdminRegister.cs",
+              "ToolTip": "D:\\code\\Online_Order_System\\Online_Order_System\\frm_AdminRegister.cs",
+              "RelativeToolTip": "Online_Order_System\\frm_AdminRegister.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAACMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-02T00:19:17.953Z",
+              "WhenOpened": "2025-08-02T11:14:41.353Z",
               "EditorCaption": ""
             }
           ]

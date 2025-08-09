@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Online_Order_System
 {
@@ -18,9 +18,6 @@ namespace Online_Order_System
             InitializeComponent();
             txtAdminPw.UseSystemPasswordChar = true;
         }
-
-
-
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -43,7 +40,7 @@ namespace Online_Order_System
                     return;
                 }
 
-                if(password.Length <= 5)
+                if (password.Length <= 5)
                 {
                     MessageBox.Show("Password must be at least 6 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtAdminPw.Focus();
@@ -51,27 +48,29 @@ namespace Online_Order_System
                 }
             }
 
-
-            string DBConnect = "server=localhost; database=online_ordering_system; uid=root; password=";
+            // Update this connection string with your actual SQL Server details
+            string DBConnect = "Data Source=localhost;Initial Catalog=online_ordering_system;Integrated Security=True";
+            // If you're using SQL Server Authentication, use:
+            // string DBConnect = "Data Source=localhost;Initial Catalog=online_ordering_system;User ID=your_username;Password=your_password";
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(DBConnect))
+                using (SqlConnection conn = new SqlConnection(DBConnect))
                 {
                     conn.Open();
 
-                    string query = $"SELECT * FROM admin WHERE adminName=@username AND password=@password";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    string query = "SELECT * FROM admin WHERE adminName = @username AND password = @password";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@username", username);
                         cmd.Parameters.AddWithValue("@password", password);
 
-                        MySqlDataReader reader = cmd.ExecuteReader();
+                        SqlDataReader reader = cmd.ExecuteReader();
 
-                        if(reader.HasRows)
+                        if (reader.HasRows)
                         {
                             DialogResult success = MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if(success == DialogResult.OK)
+                            if (success == DialogResult.OK)
                             {
                                 AdminHome adminHome = new AdminHome();
                                 adminHome.Show();
@@ -89,26 +88,21 @@ namespace Online_Order_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:" + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             frmMain frmMain = new frmMain();
-
             frmMain.Show();
-
             this.Hide();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
             frm_AdminRegister frm_AdminRegister = new frm_AdminRegister();
-
             frm_AdminRegister.Show();
-
             this.Hide();
         }
 

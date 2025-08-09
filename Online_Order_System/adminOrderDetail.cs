@@ -1,21 +1,14 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-
 
 namespace Online_Order_System
 {
     public partial class adminOrderDetail : Form
     {
         private int orderID;
+
         public adminOrderDetail(string id)
         {
             InitializeComponent();
@@ -32,33 +25,34 @@ namespace Online_Order_System
 
         private void loadData(int id)
         {
-            string db = "server=localhost; database=online_ordering_system; uid=root; password=";
+            // SQL Server connection string (change Data Source and credentials accordingly)
+            string db = "Data Source=localhost;Initial Catalog=online_ordering_system;Integrated Security=True";
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
 
                     string query = @"
-                SELECT 
-                    p.NAME AS name,
-                    od.totalQty,
-                    od.totalPrice
-                FROM 
-                    order_details od
-                JOIN 
-                    `order` o ON o.orderID = od.orderID
-                JOIN 
-                    product p ON p.productID = od.productID
-                WHERE 
-                    od.orderID = @orderID";
+                        SELECT 
+                            p.NAME AS name,
+                            od.totalQty,
+                            od.totalPrice
+                        FROM 
+                            order_details od
+                        JOIN 
+                            [order] o ON o.orderID = od.orderID
+                        JOIN 
+                            product p ON p.productID = od.productID
+                        WHERE 
+                            od.orderID = @orderID";
 
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@orderID", id);
 
-                        using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
                             DataTable dt = new DataTable();
                             adapter.Fill(dt);
@@ -72,7 +66,5 @@ namespace Online_Order_System
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
     }
 }
-

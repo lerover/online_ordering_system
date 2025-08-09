@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient; // Changed to SQL Server namespace
 
 namespace Online_Order_System
 {
@@ -38,15 +38,15 @@ namespace Online_Order_System
 
         private void showData()
         {
-            string db = "server=localhost; database=online_ordering_system; uid=root; password=";
+            string db = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
 
-                    string query = "SELECT NAME,created_at AS created_at FROM `payment-methods`";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    string query = "SELECT NAME, created_at FROM [payment-methods]";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 

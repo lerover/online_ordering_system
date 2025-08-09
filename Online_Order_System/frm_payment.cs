@@ -7,10 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+using Microsoft.Data.SqlClient;  // Changed to SQL Server
 
 namespace Online_Order_System
-
 {
     public partial class frm_payment : Form
     {
@@ -44,9 +43,9 @@ namespace Online_Order_System
             }
         }
 
-        private void exit() 
+        private void exit()
         {
-            paymentMethod  paymentMethod = new paymentMethod();
+            paymentMethod paymentMethod = new paymentMethod();
             paymentMethod.Show();
             this.Hide();
         }
@@ -55,15 +54,15 @@ namespace Online_Order_System
         {
             string paymentMethod = txtPayment.Text;
 
-            string db = "server=localhost; database=online_ordering_system; uid=root; password=";
+            string db = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
 
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(db))
+                using (SqlConnection conn = new SqlConnection(db))
                 {
                     conn.Open();
-                    string query = "INSERT INTO `payment-methods` (NAME) VALUES (@name)";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    string query = "INSERT INTO [payment-methods] (NAME) VALUES (@name)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@name", paymentMethod);
 
@@ -86,10 +85,8 @@ namespace Online_Order_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
-
-
         }
 
         private void txtPayment_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
