@@ -22,7 +22,7 @@ namespace Online_Order_System
 
         private void dataLoad()
         {
-            string db = "Data Source=localhost;Initial Catalog=online_ordering_system;Integrated Security=True"; // Change as needed
+            string db = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;"; // Change as needed
 
             try
             {
@@ -59,7 +59,7 @@ namespace Online_Order_System
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Error: Me " + ex.Message);
             }
 
             if (!dataGridView1.Columns.Contains("btnview"))

@@ -8,7 +8,7 @@ namespace Online_Order_System
     public partial class CategoryHome : Form
     {
         // SQL Server connection string
-        private string dbstring = "Data Source=localhost;Initial Catalog=online_ordering_system;Integrated Security=True";
+        private string dbstring = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
 
         public CategoryHome()
         {

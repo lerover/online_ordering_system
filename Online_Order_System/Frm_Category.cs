@@ -18,7 +18,7 @@ namespace Online_Order_System
         private DateTime? updated_at;
 
         // SQL Server connection string (Trusted Connection)
-        private string dbstring = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
+        private string dbstring = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
 
         public Frm_Category(int? categoryID = null, string name = null, DateTime? updated_at = null)
         {

@@ -13,7 +13,7 @@ namespace Online_Order_System
 {
     public partial class frm_Product : Form
     {
-        private string dbString = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
+        private string dbString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
         public frm_Product()
         {
             InitializeComponent();

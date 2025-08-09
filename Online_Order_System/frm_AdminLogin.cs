@@ -49,7 +49,7 @@ namespace Online_Order_System
             }
 
             // Update this connection string with your actual SQL Server details
-            string DBConnect = "Data Source=localhost;Initial Catalog=online_ordering_system;Integrated Security=True";
+            string DBConnect = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
             // If you're using SQL Server Authentication, use:
             // string DBConnect = "Data Source=localhost;Initial Catalog=online_ordering_system;User ID=your_username;Password=your_password";
 

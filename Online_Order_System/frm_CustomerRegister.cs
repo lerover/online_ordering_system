@@ -66,7 +66,7 @@ namespace Online_Order_System
                 }
             }
 
-            string dbConnection = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
+            string dbConnection = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;"; ;
 
             try
             {

@@ -26,7 +26,7 @@ namespace Online_Order_System
         private void loadData(int id)
         {
             // SQL Server connection string (change Data Source and credentials accordingly)
-            string db = "Data Source=localhost;Initial Catalog=online_ordering_system;Integrated Security=True";
+            string db = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;"; ;
 
             try
             {

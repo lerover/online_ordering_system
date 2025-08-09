@@ -15,7 +15,7 @@ namespace Online_Order_System
     {
         private int orderTotal = 0;
         private decimal grandPrice = 0;
-        private string dbstring = "Server=localhost;Database=online_ordering_system;Trusted_Connection=True;";
+        private string dbstring = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
         private decimal selectedProductPrice;
         private List<shoppingItem> shoppingItems = new List<shoppingItem>();
         private List<orderDetail> orderDetail = new List<orderDetail>();
