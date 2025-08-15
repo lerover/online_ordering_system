@@ -14,6 +14,8 @@ namespace Online_Order_System
 {
     public partial class frm_Customerlogin : Form
     {
+        int failedAttempts = 0;
+        int lockseconds = 0;
         public frm_Customerlogin()
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace Online_Order_System
         {
             string username = txtUserName.Text;
             string password = txtPassword.Text;
+         
 
             if (string.IsNullOrEmpty(username))
             {
@@ -73,6 +76,7 @@ namespace Online_Order_System
                                 DialogResult result = MessageBox.Show("Successfully Login", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 if (result == DialogResult.OK)
                                 {
+                                    failedAttempts = 0;
                                     customerHome customerHome = new customerHome();
                                     customerHome.Show();
                                     this.Hide();
@@ -80,7 +84,16 @@ namespace Online_Order_System
                             }
                             else
                             {
-                                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                failedAttempts++;
+                                if(failedAttempts >= 3)
+                                {
+                                    MessageBox.Show("You've attempted for 3 times wrongly, wait for 2 minutes");
+                                    lockLoginButton();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }
@@ -90,6 +103,14 @@ namespace Online_Order_System
             {
                 MessageBox.Show("Error :" + ex.Message);
             }
+        }
+
+        private void lockLoginButton()
+        {
+            lockseconds = 120;
+            btnLogin.Enabled = false;
+            lblCountDown.Text = $"Try again in {lockseconds} seconds";
+            lockTimer.Start();
         }
 
         private void btn_register_Click(object sender, EventArgs e)
@@ -114,6 +135,19 @@ namespace Online_Order_System
         private void frm_Customerlogin_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void lockTimer_Tick(object sender, EventArgs e)
+        {
+            lockseconds--;
+            lblCountDown.Text = $"Try again in {lockseconds} seconds";
+            if (lockseconds <= 0)
+            {
+                lockTimer.Stop();
+                btnLogin.Enabled = true;
+                lblCountDown.Text = "";
+                failedAttempts = 0;
+            }
         }
     }
 

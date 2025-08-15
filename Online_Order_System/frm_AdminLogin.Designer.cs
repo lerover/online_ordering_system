@@ -40,6 +40,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lblCountDown = new System.Windows.Forms.Label();
+            this.lockTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -47,15 +49,14 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.groupBox1.Controls.Add(this.lblCountDown);
             this.groupBox1.Controls.Add(this.txtAdminPw);
             this.groupBox1.Controls.Add(this.txtAdminName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(64, 61);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Location = new System.Drawing.Point(57, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(612, 312);
+            this.groupBox1.Size = new System.Drawing.Size(544, 250);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login Info";
@@ -63,29 +64,27 @@
             // 
             // txtAdminPw
             // 
-            this.txtAdminPw.Location = new System.Drawing.Point(184, 166);
-            this.txtAdminPw.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAdminPw.Location = new System.Drawing.Point(164, 133);
             this.txtAdminPw.Name = "txtAdminPw";
-            this.txtAdminPw.Size = new System.Drawing.Size(311, 26);
+            this.txtAdminPw.Size = new System.Drawing.Size(277, 22);
             this.txtAdminPw.TabIndex = 3;
             this.txtAdminPw.UseSystemPasswordChar = true;
             // 
             // txtAdminName
             // 
-            this.txtAdminName.Location = new System.Drawing.Point(184, 101);
-            this.txtAdminName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAdminName.Location = new System.Drawing.Point(164, 81);
             this.txtAdminName.Multiline = true;
             this.txtAdminName.Name = "txtAdminName";
-            this.txtAdminName.Size = new System.Drawing.Size(311, 35);
+            this.txtAdminName.Size = new System.Drawing.Size(277, 29);
             this.txtAdminName.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(57, 178);
+            this.label2.Location = new System.Drawing.Point(51, 142);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 25);
+            this.label2.Size = new System.Drawing.Size(83, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
             // 
@@ -93,9 +92,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(57, 112);
+            this.label1.Location = new System.Drawing.Point(51, 90);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 25);
+            this.label1.Size = new System.Drawing.Size(94, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "User Name";
             // 
@@ -105,21 +104,18 @@
             this.groupBox2.Controls.Add(this.btnRegister);
             this.groupBox2.Controls.Add(this.btnClose);
             this.groupBox2.Controls.Add(this.btnLogin);
-            this.groupBox2.Location = new System.Drawing.Point(64, 396);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Location = new System.Drawing.Point(57, 317);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(612, 132);
+            this.groupBox2.Size = new System.Drawing.Size(544, 106);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
             // btnRegister
             // 
             this.btnRegister.BackColor = System.Drawing.Color.White;
-            this.btnRegister.Location = new System.Drawing.Point(249, 49);
-            this.btnRegister.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRegister.Location = new System.Drawing.Point(221, 39);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(93, 45);
+            this.btnRegister.Size = new System.Drawing.Size(83, 36);
             this.btnRegister.TabIndex = 2;
             this.btnRegister.Text = "&Register";
             this.btnRegister.UseVisualStyleBackColor = false;
@@ -128,10 +124,9 @@
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(357, 49);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnClose.Location = new System.Drawing.Point(317, 39);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(93, 45);
+            this.btnClose.Size = new System.Drawing.Size(83, 36);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "&Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -140,10 +135,9 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(143, 49);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnLogin.Location = new System.Drawing.Point(127, 39);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(93, 45);
+            this.btnLogin.Size = new System.Drawing.Size(83, 36);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "&Login";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -155,14 +149,26 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // lblCountDown
+            // 
+            this.lblCountDown.AutoSize = true;
+            this.lblCountDown.Location = new System.Drawing.Point(161, 177);
+            this.lblCountDown.Name = "lblCountDown";
+            this.lblCountDown.Size = new System.Drawing.Size(0, 16);
+            this.lblCountDown.TabIndex = 2;
+            // 
+            // lockTimer
+            // 
+            this.lockTimer.Interval = 1000;
+            this.lockTimer.Tick += new System.EventHandler(this.lockTimer_Tick);
+            // 
             // frm_AdminLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 630);
+            this.ClientSize = new System.Drawing.Size(665, 504);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frm_AdminLogin";
             this.Text = "AdminLogin";
             this.Load += new System.EventHandler(this.frm_AdminLogin_Load);
@@ -186,5 +192,7 @@
         private System.Windows.Forms.TextBox txtAdminName;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Label lblCountDown;
+        private System.Windows.Forms.Timer lockTimer;
     }
 }

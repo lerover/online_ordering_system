@@ -13,6 +13,8 @@ namespace Online_Order_System
 {
     public partial class frm_AdminLogin : Form
     {
+        int attemptFailed = 0;
+        int countdownSeconds = 0;
         public frm_AdminLogin()
         {
             InitializeComponent();
@@ -72,6 +74,7 @@ namespace Online_Order_System
                             DialogResult success = MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             if (success == DialogResult.OK)
                             {
+                                attemptFailed = 0;
                                 AdminHome adminHome = new AdminHome();
                                 adminHome.Show();
                                 this.Hide();
@@ -79,7 +82,17 @@ namespace Online_Order_System
                         }
                         else
                         {
-                            MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            attemptFailed++;
+                            if(attemptFailed >= 3)
+                            {
+                                MessageBox.Show("You've tried 3 times wrongly, try again in 2 minutes");
+                                lockLogin();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
                         }
 
                         reader.Close();
@@ -92,6 +105,14 @@ namespace Online_Order_System
             }
         }
 
+        private void lockLogin()
+        {
+            countdownSeconds = 120;
+            lblCountDown.Text = $"Try again in {countdownSeconds} seconds";
+            btnLogin.Enabled = false;
+            lockTimer.Start();
+
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {
             frmMain frmMain = new frmMain();
@@ -114,6 +135,19 @@ namespace Online_Order_System
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void lockTimer_Tick(object sender, EventArgs e)
+        {
+            countdownSeconds--;
+            lblCountDown.Text = $"Try again in {countdownSeconds} seconds";
+            if (countdownSeconds <= 0)
+            {
+                lockTimer.Stop();
+                lblCountDown.Text = "";
+                btnLogin.Enabled = true;
+                attemptFailed = 0;
+            }
         }
     }
 }
