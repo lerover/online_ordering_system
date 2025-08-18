@@ -34,6 +34,7 @@ namespace Online_Order_System
             this.updated_at = updated_at;
 
             comboBoxCategory.SelectedValue = this.categoryID;
+
             MessageBox.Show($"{this.categoryID.GetType()}");
             txtProductName.Text = this.name;
             numericUpDownQty.Value = Convert.ToDecimal(this.quantity);
@@ -114,12 +115,6 @@ namespace Online_Order_System
                         string query = $"UPDATE product SET name=@name, categoryID=@categoryID,quantity=@quantity,price=@price, updated_at = @update_at WHERE productID = {this.productID}";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-
-                            //comboBoxCategory.SelectedValue = this.categoryID;
-                            //txtProductName.Text = this.name;
-                            //numericUpDownQty.Value = Convert.ToDecimal(this.quantity);
-                            //txtPrice.Text = Convert.ToString(this.price);
-
                             cmd.Parameters.AddWithValue("@name", txtProductName.Text);
                             cmd.Parameters.AddWithValue("@categoryID",comboBoxCategory.SelectedValue);
                             cmd.Parameters.AddWithValue("@quantity",numericUpDownQty.Value);
