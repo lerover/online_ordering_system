@@ -111,7 +111,6 @@ namespace Online_Order_System
             lblCountDown.Text = $"Try again in {countdownSeconds} seconds";
             btnLogin.Enabled = false;
             lockTimer.Start();
-
         }
         private void btnClose_Click(object sender, EventArgs e)
         {

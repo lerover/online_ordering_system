@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;  // changed to SQL Server namespace
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,12 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;  // changed to SQL Server namespace
 
 namespace Online_Order_System
 {
     public partial class productHome : Form
     {
+        private string dbString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;"; 
         public productHome()
         {
             InitializeComponent();
@@ -30,6 +31,11 @@ namespace Online_Order_System
 
         private void productHome_Load(object sender, EventArgs e)
         {
+            this.productData();
+        }
+
+        private void productData()
+        {
             string db = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;"; ;
             try
             {
@@ -37,7 +43,7 @@ namespace Online_Order_System
                 {
                     conn.Open();
                     string query =
-                        @"SELECT p.NAME AS product_name, c.name AS category_name, p.quantity, p.price, p.created_at, p.updated_at 
+                        @"SELECT p.productID AS product_id, p.NAME AS product_name, c.name AS category_name, p.quantity, p.price, p.created_at, p.updated_at 
                           FROM product p 
                           JOIN category c ON p.categoryID = c.categoryID";
 
@@ -48,6 +54,7 @@ namespace Online_Order_System
 
                         dataGridViewProduct.DataSource = dt;
 
+                        dataGridViewProduct.Columns["product_id"].HeaderText = "ID";
                         dataGridViewProduct.Columns["product_name"].HeaderText = "Name";
                         dataGridViewProduct.Columns["category_name"].HeaderText = "Category Name";
                         dataGridViewProduct.Columns["quantity"].HeaderText = "Quantity";
@@ -60,6 +67,31 @@ namespace Online_Order_System
             catch (Exception ex)
             {
                 MessageBox.Show("Error :" + ex.Message);
+            }
+
+            if (!dataGridViewProduct.Columns.Contains("btnUpdate"))
+            {
+                DataGridViewButtonColumn btnUpdate = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Update",
+                    Name = "btnUpdate",
+                    Text = "Update",
+                    UseColumnTextForButtonValue = true
+                };
+                dataGridViewProduct.Columns.Add(btnUpdate);
+            }
+
+            if (!dataGridViewProduct.Columns.Contains("btnDelete"))
+            {
+                DataGridViewButtonColumn btnDelete = new DataGridViewButtonColumn
+                {
+                    HeaderText = "Delete",
+                    Name = "btnDelete",
+                    Text = "Delete",
+                    UseColumnTextForButtonValue = true
+                };
+
+                dataGridViewProduct.Columns.Add(btnDelete);
             }
         }
 
@@ -75,9 +107,88 @@ namespace Online_Order_System
             // Optional paint event handler
         }
 
-        private void dataGridViewProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+       
+
+        private void dataGridViewProduct_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            // Optional cell click handler
+            if (e.RowIndex >= 0)
+            {
+                string id = dataGridViewProduct.Rows[e.RowIndex].Cells["product_id"].Value.ToString();
+                string db = this.dbString;
+
+                if (dataGridViewProduct.Columns[e.ColumnIndex].Name == "btnDelete")
+                {
+                    DialogResult result = MessageBox.Show("Are you sure to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            using (SqlConnection conn = new SqlConnection(db))
+                            {
+                                conn.Open();
+                                string query = "DELETE FROM product WHERE productID = @id";
+
+                                using (SqlCommand cmd = new SqlCommand(query, conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@id", id);
+                                    int rows = cmd.ExecuteNonQuery();
+
+                                    if (rows > 0)
+                                    {
+                                        MessageBox.Show("Deleted successfully!");
+                                        this.productData();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Delete failed or record not found.");
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error: " + ex.Message);
+                        }
+                    }
+                }
+                else if (dataGridViewProduct.Columns[e.ColumnIndex].Name == "btnUpdate")
+                {
+                    try
+                    {
+                        using (SqlConnection conn = new SqlConnection(db))
+                        {
+                            conn.Open();
+                            string query = "SELECT * FROM product WHERE productID = @id";
+
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
+                            {
+                                cmd.Parameters.AddWithValue("@id", id);
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        int productID = reader.GetInt32(reader.GetOrdinal("productID"));
+                                        int categoryID = reader.GetInt32(reader.GetOrdinal("categoryID"));
+                                        decimal price = reader.GetDecimal(reader.GetOrdinal("price"));
+                                        int quantity = reader.GetInt32(reader.GetOrdinal("quantity"));
+                                        string name = reader.GetString(reader.GetOrdinal("name"));
+                                        DateTime updated_at = reader.GetDateTime(reader.GetOrdinal("updated_at"));
+
+                                        frm_Product frm_product = new frm_Product(name, quantity, price,categoryID,productID, updated_at);
+                                        frm_product.Show();
+                                        this.Hide();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error: " + ex.Message);
+                    }
+                }
+            }
         }
     }
 }

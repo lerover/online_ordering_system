@@ -13,12 +13,33 @@ namespace Online_Order_System
 {
     public partial class frm_Product : Form
     {
+        private string name;
+        private int? quantity;
+        private decimal? price;
+        private int? categoryID;
+        private int? productID;
+        private DateTime? updated_at;
+
         private string dbString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=online_ordering_system;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;";
-        public frm_Product()
+        public frm_Product(string name = null, int? quantity = null, decimal? price = null, int? categoryID = null, int? productID = null, DateTime? updated_at = null)
         {
             InitializeComponent();
 
             comboCategory();
+            this.name = name;
+            this.quantity = quantity;
+            this.price = price;
+            this.categoryID = categoryID;
+            this.productID = productID;
+            this.updated_at = updated_at;
+
+            comboBoxCategory.SelectedValue = this.categoryID;
+            MessageBox.Show($"{this.categoryID.GetType()}");
+            txtProductName.Text = this.name;
+            numericUpDownQty.Value = Convert.ToDecimal(this.quantity);
+            txtPrice.Text = Convert.ToString(this.price);
+
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -74,6 +95,57 @@ namespace Online_Order_System
             int categoryID;
             int quantity;
             decimal price;
+            string db = this.dbString;
+
+            //this.name = name;
+            //this.quantity = quantity;
+            //this.price = price;
+            //this.categoryID = categoryID;
+            //this.productID = productID;
+            //this.updated_at = updated_at;
+
+            if (condition())
+            {
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(db))
+                    {
+                        conn.Open();
+                        string query = $"UPDATE product SET name=@name, categoryID=@categoryID,quantity=@quantity,price=@price, updated_at = @update_at WHERE productID = {this.productID}";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+
+                            //comboBoxCategory.SelectedValue = this.categoryID;
+                            //txtProductName.Text = this.name;
+                            //numericUpDownQty.Value = Convert.ToDecimal(this.quantity);
+                            //txtPrice.Text = Convert.ToString(this.price);
+
+                            cmd.Parameters.AddWithValue("@name", txtProductName.Text);
+                            cmd.Parameters.AddWithValue("@categoryID",comboBoxCategory.SelectedValue);
+                            cmd.Parameters.AddWithValue("@quantity",numericUpDownQty.Value);
+                            cmd.Parameters.AddWithValue("@price",txtPrice.Text);
+                            cmd.Parameters.AddWithValue("@update_at", DateTime.Now);
+
+                            int result = cmd.ExecuteNonQuery();
+
+                            if (result > 0)
+                            {
+                                MessageBox.Show("Category updated successfully!");
+                                CategoryHome home = new CategoryHome();
+                                home.Show();
+                                this.Hide();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error :" + ex.Message);
+                }
+
+                return;
+            }
+
 
             if (comboBoxCategory.SelectedValue == null ||
                 !int.TryParse(comboBoxCategory.SelectedValue.ToString(), out categoryID)
@@ -107,7 +179,6 @@ namespace Online_Order_System
                 return;
             }
 
-            string db = this.dbString;
             try
             {
                 using (SqlConnection conn = new SqlConnection(db))
@@ -184,6 +255,11 @@ namespace Online_Order_System
             productHome product = new productHome();
             product.Show();
             this.Hide();
+        }
+    
+        private bool condition()
+        {
+            return this.name != null && this.quantity != null && this.price != null && this.categoryID != null && this.productID != null && this.updated_at != null;
         }
     }
 }
