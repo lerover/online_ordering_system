@@ -20,6 +20,8 @@ namespace Online_Order_System
         private List<shoppingItem> shoppingItems = new List<shoppingItem>();
         private List<orderDetail> orderDetail = new List<orderDetail>();
 
+        private decimal discountPrice = 0;
+
         public frm_CustomerHome()
         {
             InitializeComponent();
@@ -301,6 +303,11 @@ namespace Online_Order_System
             if (quantity > 0)
             {
                 decimal finalPrice = this.selectedProductPrice * quantity;
+
+                // Subtract 1000 for every 5 quantities as discount
+                this.discountPrice = (quantity / 5) * 1000;
+                finalPrice -= this.discountPrice;
+                txtDiscount.Text = this.discountPrice.ToString();
 
                 txtTotalPrice.Text = finalPrice.ToString();
             }

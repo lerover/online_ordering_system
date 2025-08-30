@@ -35,7 +35,7 @@ namespace Online_Order_System
 
             comboBoxCategory.SelectedValue = this.categoryID;
 
-            MessageBox.Show($"{this.categoryID.GetType()}");
+            //MessageBox.Show($"{this.categoryID.GetType()}");
             txtProductName.Text = this.name;
             numericUpDownQty.Value = Convert.ToDecimal(this.quantity);
             txtPrice.Text = Convert.ToString(this.price);
